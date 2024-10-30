@@ -6,36 +6,47 @@ import {{basePackage}}.Repo.I{{className}}Repo;
 import {{basePackage}}.Service.I{{className}}Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class {{className}}Dao implements I{{className}}Service {
     @Autowired
     private I{{className}}Repo repo;
 
-    @Override
-    public List<{{className}}> findAll() {
-        return repo.findAll();
-    }
+     @Override
+     public List<{{className}}Dto> findAll() {
+         log.info("Buscando todos los {{classNameLower}}s");
+         List<{{className}}> entities = repo.findAll();
+         return entities.stream()
+                 .map({{className}}Dto::set{{className}})
+                 .collect(Collectors.toList());
+     }
+
 
     @Override
     public {{className}} findById({{pkType}} id) {
+        log.info("Buscando {{classNameLower}} por id: " + id);
         return repo.findById(id).orElseThrow(() -> new ModeloNotFoundException("{{className}} no encontrado"));
     }
 
     @Override
     public {{className}} save({{className}} {{classNameLower}}) {
+        log.info("Guardando {{classNameLower}}");
         return repo.save({{classNameLower}});
     }
 
     @Override
     public {{className}} update({{className}} {{classNameLower}}) {
+        log.info("Actualizando {{classNameLower}}");
         return repo.save({{classNameLower}});
     }
 
     @Override
     public void delete({{pkType}} id) {
+        log.info("Eliminando {{classNameLower}} por id: " + id);
         repo.deleteById(id);
     }
 }

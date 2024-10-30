@@ -1,6 +1,7 @@
 package {{basePackage}}.Controller;
 
 import {{basePackage}}.Dao.{{className}}Dao;
+import {{basePackage}}.Dto.{{className}}Dto;
 import {{basePackage}}.Model.{{className}};
 import {{basePackage}}.Config.Exception.ModeloNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,20 +12,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("/{classNameLower}")
+@RequestMapping("/{{classNameLower}}")
 public class {{className}}Controller {
     @Autowired
     private {{className}}Dao {{classNameLower}}Dao;
 
     @PostMapping
-    public ResponseEntity<?> save{{className}}(@RequestBody {{className}} request) {
-        {{className}} {{classNameLower}} = {{classNameLower}}Dao.save(request);
+    public ResponseEntity<?> save{{className}}(@RequestBody {{className}}Dto request) {
+        {{className}} {{classNameLower}} = {{classNameLower}}Dao.save(request.get{{className}}());
         return new ResponseEntity<>({{classNameLower}}, HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<?> update{{className}}(@RequestBody {{className}} request) {
-        {{className}} {{classNameLower}} = {{classNameLower}}Dao.update(request);
+    public ResponseEntity<?> update{{className}}(@RequestBody {{className}}Dto request) {
+        {{className}} {{classNameLower}} = {{classNameLower}}Dao.update(request.get{{className}}());
         return new ResponseEntity<>({{classNameLower}}, HttpStatus.CREATED);
     }
 

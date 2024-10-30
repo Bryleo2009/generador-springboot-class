@@ -5,7 +5,7 @@ import {{basePackage}}.Model.{{className}};
 import java.util.List;
 
 public interface I{{className}}Service {
-    List<{{className}}> findAll();
+    List<{{className}}Dto> findAll();
     {{className}} findById({{pkType}} id);
     {{className}} save({{className}} {{classNameLower}});
     {{className}} update({{className}} {{classNameLower}});
