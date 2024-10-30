@@ -7,7 +7,7 @@ import java.util.List;
 public interface I{{className}}Service {
     List<{{className}}Dto> findAll();
     {{className}} findById({{pkType}} id);
-    {{className}} save({{className}} {{classNameLower}});
-    {{className}} update({{className}} {{classNameLower}});
+    {{className}} save({{className}}Dto {{classNameLower}});
+    {{className}} update({{className}}Dto {{classNameLower}});
     void delete({{pkType}} id);
 }

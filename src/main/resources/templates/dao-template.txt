@@ -33,14 +33,18 @@ public class {{className}}Dao implements I{{className}}Service {
     }
 
     @Override
-    public {{className}} save({{className}} {{classNameLower}}) {
+    public {{className}} save({{className}}Dto {{classNameLower}}Dto) {
         log.info("Guardando {{classNameLower}}");
+
+        {{className}} {{classNameLower}} = {{classNameLower}}Dto.get{{className}}();
         return repo.save({{classNameLower}});
     }
 
     @Override
-    public {{className}} update({{className}} {{classNameLower}}) {
+    public {{className}} update({{className}}Dto {{classNameLower}}Dto) {
         log.info("Actualizando {{classNameLower}}");
+
+        {{className}} {{classNameLower}} = {{classNameLower}}Dto.get{{className}}();
         return repo.save({{classNameLower}});
     }
 

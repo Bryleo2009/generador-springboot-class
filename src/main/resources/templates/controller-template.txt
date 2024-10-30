@@ -19,13 +19,13 @@ public class {{className}}Controller {
 
     @PostMapping
     public ResponseEntity<?> save{{className}}(@RequestBody {{className}}Dto request) {
-        {{className}} {{classNameLower}} = {{classNameLower}}Dao.save(request.get{{className}}());
+        {{className}} {{classNameLower}} = {{classNameLower}}Dao.save(request);
         return new ResponseEntity<>({{classNameLower}}, HttpStatus.CREATED);
     }
 
     @PutMapping
     public ResponseEntity<?> update{{className}}(@RequestBody {{className}}Dto request) {
-        {{className}} {{classNameLower}} = {{classNameLower}}Dao.update(request.get{{className}}());
+        {{className}} {{classNameLower}} = {{classNameLower}}Dao.update(request);
         return new ResponseEntity<>({{classNameLower}}, HttpStatus.CREATED);
     }
 
