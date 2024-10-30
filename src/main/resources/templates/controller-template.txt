@@ -1,0 +1,53 @@
+package {{basePackage}}.Controller;
+
+import {{basePackage}}.Dao.{{className}}Dao;
+import {{basePackage}}.Model.{{className}};
+import {{basePackage}}.Config.Exception.ModeloNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
+
+@RestController
+@RequestMapping("/{classNameLower}")
+public class {{className}}Controller {
+    @Autowired
+    private {{className}}Dao {{classNameLower}}Dao;
+
+    @PostMapping
+    public ResponseEntity<?> save{{className}}(@RequestBody {{className}} request) {
+        {{className}} {{classNameLower}} = {{classNameLower}}Dao.save(request);
+        return new ResponseEntity<>({{classNameLower}}, HttpStatus.CREATED);
+    }
+
+    @PutMapping
+    public ResponseEntity<?> update{{className}}(@RequestBody {{className}} request) {
+        {{className}} {{classNameLower}} = {{classNameLower}}Dao.update(request);
+        return new ResponseEntity<>({{classNameLower}}, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> get{{className}}(@PathVariable {{pkType}} id) {
+        {{className}} {{classNameLower}} = {{classNameLower}}Dao.findById(id);
+        if (Objects.isNull({{classNameLower}})) {
+            throw new ModeloNotFoundException("{{className}} no encontrado");
+        }
+        return new ResponseEntity<>( {{classNameLower}}, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getAll{{className}}s() {
+        return new ResponseEntity<>( {{classNameLower}}Dao.findAll(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete{{className}}(@PathVariable {{pkType}} id) {
+        if (Objects.isNull({{classNameLower}}Dao.findById(id))) {
+            throw new ModeloNotFoundException("{{className}} no encontrado");
+        }
+        {{classNameLower}}Dao.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+}

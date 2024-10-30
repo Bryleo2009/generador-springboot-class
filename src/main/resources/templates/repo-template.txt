@@ -1,0 +1,8 @@
+package {{basePackage}}.Repo;
+
+import {{basePackage}}.Model.{{className}};
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface I{{className}}Repo extends JpaRepository<{{className}}, {{pkType}}> {
+
+}

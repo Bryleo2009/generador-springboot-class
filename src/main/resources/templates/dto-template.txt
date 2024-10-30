@@ -1,0 +1,31 @@
+package {{basePackage}}.Dto;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import {{basePackage}}.Model.{{className}};
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class {{className}}Dto {
+    // Campos de la entidad
+    {{fields}}
+
+    @JsonIgnore
+    public {{className}} get{{className}}() {
+        return {{className}}.builder()
+                {{fieldSetters}}
+                .build();
+    }
+
+    @JsonIgnore
+    public static {{className}}Dto set{{className}}({{className}} {{classNameLower}}) {
+        return {{className}}Dto.builder()
+                {{fieldGetters}}
+                .build();
+    }
+}

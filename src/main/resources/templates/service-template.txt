@@ -1,0 +1,13 @@
+package {{basePackage}}.Service;
+
+import {{basePackage}}.Model.{{className}};
+
+import java.util.List;
+
+public interface I{{className}}Service {
+    List<{{className}}> findAll();
+    {{className}} findById({{pkType}} id);
+    {{className}} save({{className}} {{classNameLower}});
+    {{className}} update({{className}} {{classNameLower}});
+    void delete({{pkType}} id);
+}
